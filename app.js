@@ -1,5 +1,6 @@
 import express, { json } from 'express'
 import { createRouters } from './routes/index.js';
+import dotenv from 'dotenv/config.js'
 
 export const createApp = (models) => {
     const app = express()
