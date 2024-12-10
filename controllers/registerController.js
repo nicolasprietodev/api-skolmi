@@ -26,7 +26,7 @@ export class RegisterController {
 
     } catch (error) {
       console.error('Error al crear el usuario: ', error)
-      res.status(500).json({ error: error.message })
+      res.status(500).json({ error: 'pepe' })
     }
   }
 }

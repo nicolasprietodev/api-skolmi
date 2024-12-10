@@ -1,4 +1,4 @@
-POST http://localhost:1235/v1/register
+POST https://api-skolmi.onrender.com/v1/register
 Content-Type: application/json
 
 {
