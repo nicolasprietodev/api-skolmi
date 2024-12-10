@@ -1,0 +1,9 @@
+POST http://localhost:1235/v1/register
+Content-Type: application/json
+
+{
+  "nombre": "yonis",
+  "correo": "yonis@yonis.com",
+  "password": "123",
+  "roleId": 1
+}

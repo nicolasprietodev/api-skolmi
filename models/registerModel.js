@@ -1,0 +1,39 @@
+import { SALT_ROUNDS } from '../config/config.js'
+import pool from '../connection/pool.js'
+import bcrypt from 'bcrypt'
+
+export class RegisterModel {
+  static async createUser ({ nombre, correo, password, roleId }) {
+    const connection = await pool.getConnection()
+
+    console.log('Datos enviados a la consulta SQL', {
+      nombre,
+      correo,
+      password,
+      roleId,
+    });
+    
+    try {
+      const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+      console.log('password', hashedPassword)
+      const [result] = await connection.query(
+        `INSERT INTO usuarios (nombre, correo, password,
+                id_rol) VALUES (?,?,?,?)`,
+        [nombre, correo, hashedPassword, roleId]
+      )
+      return {
+        id: result.insertId,
+        nombre,
+        correo,
+        roleId,
+      }
+    } catch (error) {
+      console.error('Error creating user')
+      throw error
+    }
+  }
+}
+
+export const models = {
+  RegisterModel
+}
