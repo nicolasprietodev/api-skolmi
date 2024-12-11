@@ -5,9 +5,20 @@ export class LoginModel {
     try {
       const [rows] = await pool.query(
         `
-                SELECT correo, password, id_rol
-                FROM usuarios
-                WHERE correo = ?`,
+               SELECT
+                  u.correo AS correo,
+                  u.password,
+                  r.rol AS rol,
+                  u.id_usuario
+              FROM 
+                  usuarios u
+              INNER JOIN
+                  roles_usuario r
+              ON
+                  u.id_rol = r.id_rol
+              WHERE
+                  u.correo = ?;
+`,
         [correo]
       );
       if (rows.length === 0) {
@@ -25,23 +36,23 @@ export class LoginModel {
       throw error;
     }
   }
-  static async validatePassword (plainPassword, hashedPassword) {
-    return await bcrypt.compare(plainPassword, hashedPassword)
+  static async validatePassword(plainPassword, hashedPassword) {
+    return await bcrypt.compare(plainPassword, hashedPassword);
   }
 
-  static async getUser () {
+  static async getUser() {
     try {
       const [users] = await pool.query(`
         SELECT * FROM usuarios
-      `)
-      return users
-    } catch (error){
-      console.error('Error fetching users')
-      throw new Error('Error fetching users')
+      `);
+      return users;
+    } catch (error) {
+      console.error("Error fetching users");
+      throw new Error("Error fetching users");
     }
   }
 }
 
 export const models = {
-    LoginModel
-  }
+  LoginModel,
+};
