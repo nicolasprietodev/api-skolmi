@@ -1,6 +1,5 @@
-import redisClient from "../config/redis.js";
-import bcrypt from 'bcrypt'
-import { generateAccessToken } from "../utils/authUtils.js"
+import jwt from 'jsonwebtoken'
+import { COOKIE_OPTIONS, JWT_TOKEN } from '../config/config.js'
 
 
 export class LoginController {
@@ -13,36 +12,24 @@ export class LoginController {
     const { correo, password } = req.body;
   
     try {
-      const user = await this.loginModel.getCorreo({ correo });
+      const user = await this.loginModel.getCorreo({ correo, password });
   
-      if (!user) {
-        return res.status(401).json({ error: "Credenciales incorrectas" });
+      if (!user || !(await this.restauranteModel.validatePassword(password, user.hashedPassword))) {
+        return res.status(401).json({ message: 'Usuario o contraseña incorrectos' })
       }
-  
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-      if (!isPasswordValid) {
-        return res.status(401).json({ error: "Credenciales incorrectas" });
-      }
-  
-      const accessToken = generateAccessToken({ id: user.id_usuario, roleId: user.rol });
-  
-      await redisClient.set(
-        `session:${user.id_usuario}`,
-        accessToken, 
-        "EX",
-        60 * 60 
-      );
-      
-  
-      res.status(200).json({
-        message: "Inicio de sesión exitoso",
-        accessToken,
-      });
+
+      const token = jwt.sign(
+        { userId: user.user_id, username: user.username, password: user.password }
+        , JWT_TOKEN,
+        { expiresIn: '1h' })
+
+      res.cookie('authToken', token, COOKIE_OPTIONS)
+      res.status(200).json({ message: 'Inicio de sesión exitoso', token })
     } catch (error) {
-      console.error("Error en login:", error);
-      res.status(500).json({ error: "Error interno del servidor" });
+      console.error('Error en el controlador getLogin:', error)
+      res.status(500).json({ message: 'Error al inicar sesion' })
     }
-  
+  };
 
   getUsers = async (req, res) => {
     try {
@@ -54,4 +41,4 @@ export class LoginController {
   }
 
 }
-};
+

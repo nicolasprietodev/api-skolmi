@@ -2,25 +2,14 @@ import jwt from "jsonwebtoken";
 import redisClient from "../config/redis.js";
 import { JWT_TOKEN } from "../config/config.js";
 
-export const authenticate = async (req, res, next) => {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-  if (!token) {
-    return res.status(401).json({ error: "Token no proporcionado" });
-  }
+export const authenticationToken = (req, res, next) => {
+  const token = req.cookies.authToken
 
-  try {
-    const payload = jwt.verify(token, JWT_TOKEN);
+  if (!token) return res.status(401).json({ message: 'No tiene autorizacion' })
 
-    const session = await redisClient.get(`session:${payload.id}`);
-    if (!session || session !== token) {
-      return res.status(403).json({ error: "Sesión expirada o no válida" });
-    }
-
-    req.user = payload;
-    next();
-  } catch (error) {
-    console.error("Error al autenticar el token:", error.message);
-    return res.status(403).json({ error: "Token inválido o expirado" });
-  }
-};
+  jwt.verify(token, JWT_TOKEN, (err, user) => {
+    if (err) return res.sendStatus(403)
+    req.user = user
+    next()
+  })
+}
