@@ -8,7 +8,7 @@ export class LoginController {
   }
 
   login = async (req, res) => {
-    const { email, password } = req.body;
+    const { correo, password } = req.body;
 
     try {
       const user = await this.loginModel.getCorreo({ correo, password });
