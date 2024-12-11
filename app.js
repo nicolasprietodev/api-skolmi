@@ -7,11 +7,12 @@ export const createApp = (models) => {
     app.disable('x-powered-by')
     app.use(json())
 
-    const { registerRouter } = createRouters(models)
+    const { registerRouter, loginRouter } = createRouters(models)
     console.log('holi',models)
 
 
     app.use('/v1', registerRouter)
+    app.use('/v1', loginRouter)
 
     return app
 }   
