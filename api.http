@@ -12,9 +12,9 @@ POST https://api-skolmi.onrender.com/v1/register
 Content-Type: application/json
 
 {
-  "nombre": "yonis",
-  "correo": "yonis@yonis.com",
-  "password": "123",
+  "nombre": "yonis2",
+  "correo": "yonis2@yonis.com",
+  "password": "1234",
   "roleId": 1
 }
 ###
