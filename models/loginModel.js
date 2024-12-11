@@ -5,8 +5,8 @@ export class LoginModel {
     try {
       const [rows] = await pool.query(
         `
-               SELECT
-                  u.correo,
+              SELECT
+                  u.correo AS correo,
                   u.password,
                   r.rol AS rol,
                   u.id_usuario
@@ -17,7 +17,8 @@ export class LoginModel {
               ON
                   u.id_rol = r.id_rol
               WHERE
-                  u.correo = ?;
+                  correo = ?;
+      ;
 `,
         [correo]
       );
@@ -27,9 +28,10 @@ export class LoginModel {
 
       const user = rows[0];
       return {
+        id_usuario: user.id_usuario,
         correo: user.correo,
         password: user.password,
-        id_rol: user.rol,
+        id_rol: user.rol
       };
     } catch (error) {
       console.error("Error fetching user by email:", error);

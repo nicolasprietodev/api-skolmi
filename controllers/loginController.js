@@ -1,5 +1,4 @@
 import redisClient from "../config/redis.js";
-import { LoginModel } from "../models/loginModel.js";
 
 export class LoginController {
 
@@ -13,10 +12,8 @@ export class LoginController {
     try {
       const user = await this.loginModel.getCorreo({ correo, password });
 
-      if (
-        !user ||
-        !(await this.loginModel.validatePassword(password, user.password))
-      ) {
+      if ( !user ||!(await this.loginModel.validatePassword(password, user.password))) 
+        {
         return res
           .status(401)
           .json({ message: "Usuario o contraseña incorrectos" });
