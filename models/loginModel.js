@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt'
 export class LoginModel {
   static async getCorreo({ correo }) {
     try {
+      console.log('correo',correo)
       const [rows] = await pool.query(
         `
         SELECT

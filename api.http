@@ -1,6 +1,6 @@
 GET https://api-skolmi.onrender.com/v1/usersLogin
 ###
-POST http://localhost:1235/v1/login
+POST https://api-skolmi.onrender.com/v1/login
 Content-Type: application/json
 
 {
