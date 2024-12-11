@@ -11,7 +11,7 @@ export class LoginController {
     const { email, password } = req.body;
 
     try {
-      const user = await this.loginModel.getCorreo({ email, password });
+      const user = await this.loginModel.getCorreo({ correo, password });
 
       if (
         !user ||
