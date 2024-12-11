@@ -1,6 +1,6 @@
 import { SALT_ROUNDS } from '../config/config.js'
 import pool from '../connection/pool.js'
-import bcrypt from 'bcrypt'
+
 
 export class RegisterModel {
   static async createUser ({ nombre, correo, password, roleId }) {
