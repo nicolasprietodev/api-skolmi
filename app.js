@@ -7,8 +7,8 @@ export const createApp = (models) => {
     const app = express()
     app.disable('x-powered-by')
     app.use(json())
-    app.use(corsMiddleware)
-    
+    app.use(corsMiddleware())
+
     const { registerRouter, loginRouter } = createRouters(models)
     console.log('holi',models)
 
