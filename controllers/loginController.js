@@ -14,8 +14,15 @@ export class LoginController {
     try {
       const user = await this.loginModel.getCorreo({ correo, password });
   
-      if (!user || !(await this.loginModel.validatePassword(password, user.hashedPassword))) {
-        return res.status(401).json({ message: 'Usuario o contraseña incorrectos' })
+      console.log(password,user.password)
+
+      if (!user) {
+        return res.status(401).json({ message: 'Usuario o contraseña incorrectos' });
+      }
+
+      const isPasswordValid = await this.loginModel.validatePassword(password, user.password);
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: 'Usuario o contraseña incorrectos' });
       }
 
       const token = jwt.sign(
@@ -31,13 +38,10 @@ export class LoginController {
     }
   };
 
-  getUsers = async (req, res) => {
-    try {
-      const restaurants = await this.loginModel.getUser()
-      res.json(restaurants)
-    } catch (error) {
-      res.status(500).json({ error: error.message })
-    }
+
+  logout (req, res) {
+    res.clearCookie('authToken')
+    res.json({ message: 'Sesion cerrada exitosamente' })
   }
 
 }
