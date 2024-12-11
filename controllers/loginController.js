@@ -37,7 +37,10 @@ export class LoginController {
       res.status(500).json({ message: 'Error al inicar sesion' })
     }
   };
-
+  
+  renderLogin (req, res) {
+    res.render('login')
+  }
 
   logout (req, res) {
     res.clearCookie('authToken')

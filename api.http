@@ -1,12 +1,14 @@
 GET https://api-skolmi.onrender.com/v1/usersLogin
 ###
-POST https://api-skolmi.onrender.com/v1/login
+POST http://localhost:1235/v1/login
 Content-Type: application/json
 
 {
   "correo": "yonis@yonis.com",
   "password": "123"
 }
+###
+POST  http://localhost:1235/v1/logout
 ###
 POST https://api-skolmi.onrender.com/v1/register
 Content-Type: application/json
@@ -18,4 +20,4 @@ Content-Type: application/json
   "roleId": 1
 }
 ###
-GET https://api-skolmi.onrender.com/v1/users
+GET  http://localhost:1235/v1/users
