@@ -1,4 +1,5 @@
 import redisClient from "../config/redis.js";
+import bcrypt from 'bcrypt'
 
 export class LoginController {
 
