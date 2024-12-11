@@ -4,8 +4,8 @@ POST https://api-skolmi.onrender.com/v1/login
 Content-Type: application/json
 
 {
-  "correo": "yonis@yonis.com",
-  "password": "123"
+  "correo": "nico@gmail.com",
+  "password": "1234"
 }
 ###
 POST  http://localhost:1235/v1/logout

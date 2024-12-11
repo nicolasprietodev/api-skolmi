@@ -7,7 +7,7 @@ export const createLoginRouter = ({ loginModel }) => {
 
     router.post('/login', loginController.login);
     router.post('/logout', loginController.logout)
-    // router.get('/login', loginController.renderLogin.bind(loginController))
+    // router.get('/login', loginController.renderLogin.bind(loginController))52
 
     return router
 }
