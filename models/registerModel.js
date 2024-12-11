@@ -1,5 +1,6 @@
 import { SALT_ROUNDS } from '../config/config.js'
 import pool from '../connection/pool.js'
+import bcrypt from 'bcrypt'
 
 
 export class RegisterModel {
