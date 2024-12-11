@@ -8,4 +8,4 @@ Content-Type: application/json
   "roleId": 1
 }
 ###
-GET http://localhost:1235/v1/users
+GET https://api-skolmi.onrender.com/v1/users
