@@ -7,6 +7,7 @@ export const createRegisterRouter = ({ registerModel }) => {
     const registerController = new RegisterController({ registerModel })
 
     router.post('/register', registerController.createUser)
+    router.get('/users', registerController.getUsers)
 
     return router
 }

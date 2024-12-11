@@ -32,6 +32,18 @@ export class RegisterModel {
       throw error
     }
   }
+
+  static async getUser () {
+    try {
+      const [users] = await pool.query(`
+        SELECT * FROM usuarios
+      `)
+      return users
+    } catch (error){
+      console.error('Error fetching users')
+      throw new Error('Error fetching users')
+    }
+  }
 }
 
 export const models = {

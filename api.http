@@ -7,3 +7,5 @@ Content-Type: application/json
   "password": "123",
   "roleId": 1
 }
+###
+GET http://localhost:1235/v1/users
