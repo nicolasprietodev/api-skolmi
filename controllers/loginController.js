@@ -1,6 +1,6 @@
 import redisClient from "../config/redis.js";
 import bcrypt from 'bcrypt'
-import { generateAccessToken } from "../utils/authUtil.js";
+import { generateAccessToken } from "../utils/authUtils.js"
 
 
 export class LoginController {
