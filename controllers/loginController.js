@@ -2,15 +2,20 @@ import redisClient from "../config/redis.js";
 import { LoginModel } from "../models/loginModel.js";
 
 export class LoginController {
+
+  constructor ({ loginModel }) {
+    this.loginModel = loginModel
+  }
+
   login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-      const user = await LoginModel.getCorreo({ email, password });
+      const user = await this.loginModel.getCorreo({ email, password });
 
       if (
         !user ||
-        !(await this.LoginModel.validatePassword(password, user.password))
+        !(await this.loginModel.validatePassword(password, user.password))
       ) {
         return res
           .status(401)
@@ -38,7 +43,7 @@ export class LoginController {
 
   getUsers = async (req, res) => {
     try {
-      const restaurants = await this.registerModel.getUser()
+      const restaurants = await this.loginModel.getUser()
       res.json(restaurants)
     } catch (error) {
       res.status(500).json({ error: error.message })
