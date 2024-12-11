@@ -27,6 +27,7 @@ export const createApp = (models) => {
 
     app.use('/v1', registerRouter)
     app.use('/v1', loginRouter)
+    // app.use('/v1/dashboard', loginRouter)
 
     return app
 }   

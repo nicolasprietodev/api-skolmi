@@ -26,7 +26,7 @@ export class LoginController {
       }
 
       const token = jwt.sign(
-        { userId: user.user_id, username: user.username, password: user.password }
+        { userId: user.id_usuario, username: user.correo, password: user.password }
         , JWT_TOKEN,
         { expiresIn: '1h' })
 
@@ -38,10 +38,6 @@ export class LoginController {
     }
   };
   
-  renderLogin (req, res) {
-    res.render('login')
-  }
-
   logout (req, res) {
     res.clearCookie('authToken')
     res.json({ message: 'Sesion cerrada exitosamente' })

@@ -30,13 +30,5 @@ export class RegisterController {
     }
   }
 
-  getUsers = async (req, res) => {
-    try {
-      const restaurants = await this.registerModel.getUser()
-      res.json(restaurants)
-    } catch (error) {
-      res.status(500).json({ error: error.message })
-    }
-  }
 
 }
