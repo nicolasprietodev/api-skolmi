@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import redisClient from "../config/redis.js";
 import { JWT_TOKEN } from "../config/config.js";
 
 export const authenticationToken = (req, res, next) => {
