@@ -5,6 +5,6 @@ export const {
         maxAge: 60 * 60 * 1000, 
         httpOnly: true, 
         secure: false,
-        sameSite: 'strict'
+        sameSite: 'lax'
       }
 } = process.env
