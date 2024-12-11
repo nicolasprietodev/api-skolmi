@@ -6,7 +6,7 @@ export const createLoginRouter = ({ loginModel }) => {
     const loginController = new LoginController({ loginModel });
 
     router.post('/login', loginController.login);
-    router.post('/logout', loginController.getUsers)
+    router.post('/logout', loginController.logout)
 
     return router
 }
