@@ -1,4 +1,5 @@
 import pool from "../connection/pool.js";
+import bcrypt from 'bcrypt'
 
 export class LoginModel {
   static async getCorreo({ correo }) {
@@ -39,7 +40,7 @@ export class LoginModel {
     }
   }
   
-  
+
   static async validatePassword(plainPassword, hashedPassword) {
     return await bcrypt.compare(plainPassword, hashedPassword);
   }

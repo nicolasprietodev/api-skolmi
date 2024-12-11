@@ -14,7 +14,7 @@ export class LoginController {
     try {
       const user = await this.loginModel.getCorreo({ correo, password });
   
-      if (!user || !(await this.restauranteModel.validatePassword(password, user.hashedPassword))) {
+      if (!user || !(await this.loginModel.validatePassword(password, user.hashedPassword))) {
         return res.status(401).json({ message: 'Usuario o contraseña incorrectos' })
       }
 
