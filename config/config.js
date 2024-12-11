@@ -4,7 +4,7 @@ export const {
     COOKIE_OPTIONS = {
         maxAge: 60 * 60 * 1000, 
         httpOnly: true, 
-        secure: false,
+        secure: true,
         sameSite: 'lax'
       }
 } = process.env
