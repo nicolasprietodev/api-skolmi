@@ -62,7 +62,15 @@ Content-Type: application/json
   "codigo": "C86F9334" 
 }
 
-#### Reporte
+#### 
 GET http://localhost:1235/v1/dashboard/getAllMatriculas
 ###
+GET http://localhost:1235/v1/dashboard/getMatriculaById/1
+
+###
 GET http://localhost:1235/v1/user/users
+###
+GET http://localhost:1235/v1/user/users/1
+
+###
+GET http://localhost:1235/v1/reportes/reporte

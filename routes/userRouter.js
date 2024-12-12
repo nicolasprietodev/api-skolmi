@@ -6,6 +6,8 @@ export const createRouterUser = ({ userModel }) => {
     const userController = new UserController({ userModel })
 
     router.get('/users', userController.getAllUsers)
+    router.get('/users/:userId', userController.getUserById)
+    router.get('/users/:userId', userController.getUserById)
 
     return router
 }

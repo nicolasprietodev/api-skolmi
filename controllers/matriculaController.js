@@ -55,13 +55,23 @@ export class MatriculaController {
         }
     }
 
-    getAllUsers = async (req, res) => {
+    getAllMatriculas = async (req, res) => {
         try {
-          const restaurants = await this.matriculaModel.getAllMatriculas()
-          res.json(restaurants)
+          const user = await this.matriculaModel.getAllMatriculas()
+          res.json(user)
         } catch (error) {
           res.status(500).json({ error: error.message })
         }
       }
     
+      getMatriculaById = async (req, res) => {
+        try {
+            const { userId } = req.params;
+          const user = await this.matriculaModel.getMatriculaById({ userId })
+          res.json(user)
+        } catch (error) {
+          res.status(500).json({ error: error.message })
+        }
+      }
+
 }

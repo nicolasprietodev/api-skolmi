@@ -1,10 +1,12 @@
+
+
 export class ReporteController {
 
   constructor ({ reporteModel }){
-    this.reporteModel= reporteModel;
+    this.reporteModel= reporteModel
   }
 
-  static async generarReporte(req, res) {
+   generarReporte = async (req, res) => {
     try {
       const reporte = await this.reporteModel.obtenerReporte();
       res.json(reporte);
@@ -14,7 +16,7 @@ export class ReporteController {
     }
   }
 
-  static async segmentarReferidos(req, res) {
+  segmentarReferidos = async (req, res) => {
     const estado = req.query.estado || 1;
     try {
       const segmentados = await this.reporteModel.segmentarReferidos(estado);

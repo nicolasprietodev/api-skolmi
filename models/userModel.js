@@ -1,7 +1,7 @@
 import pool from '../connection/pool.js'
 
 export class UserModel {
-    static async getAllUsers (){
+    static async getAllUsers() {
 
         try {
             const [users] = await pool.query(`
@@ -13,7 +13,9 @@ export class UserModel {
                     u.fecha_registro,
                     u.estado_usuario,
                     r.rol AS rol_usuario,
-                    c.nombre_curso AS curso
+                    c.nombre_curso AS curso,
+                    u.codigo
+
                 FROM
                     usuarios u
                 LEFT JOIN
@@ -27,13 +29,13 @@ export class UserModel {
 
             `)
             return users
-          } catch (error){
-            console.error('Error fetching users',error)
+        } catch (error) {
+            console.error('Error fetching users', error)
             throw new Error('Error fetching users')
-          }
+        }
     }
 
-    static async getUserById ({ userId }){
+    static async getUserById({ userId }) {
         try {
             const [user] = await pool.query(`
                 SELECT 
@@ -44,7 +46,8 @@ export class UserModel {
                     u.fecha_registro,
                     u.estado_usuario,
                     r.rol AS rol_usuario,
-                    c.nombre_curso AS curso
+                    c.nombre_curso AS curso,
+                    u.codigo
                 FROM
                     usuarios u
                 LEFT JOIN
@@ -65,10 +68,10 @@ export class UserModel {
         }
     }
 
-    static async updateUser ({  nombre, correo, telefono, userId, }){
+    static async updateUser({ nombre, correo, telefono, userId, }) {
         try {
-            
-            
+
+
             const [result] = await pool.query(`
                 UPDATE
                     usuarios
@@ -83,14 +86,16 @@ export class UserModel {
                 telefono,
                 userId])
 
-                if (result.affectedRows === 0) {
-                    throw new Error('User not found')
-                }
+            if (result.affectedRows === 0) {
+                throw new Error('User not found')
+            }
 
-            return {nombre,
+            return {
+                nombre,
                 correo,
                 telefono,
-                userId}
+                userId
+            }
 
         } catch (error) {
             console.error('Error updating user:', error)
