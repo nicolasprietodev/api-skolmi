@@ -2,7 +2,6 @@ import express, { json } from 'express'
 import { createRouters } from './routes/index.js';
 import { corsMiddleware } from './middleWares/corsMiddleware.js'
 import cookieParser from 'cookie-parser'
-import createReporteRouter from './routes/reporteRouter.js';
 
 
 export const createApp = (models) => {
