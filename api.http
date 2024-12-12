@@ -13,7 +13,7 @@ POST http://localhost:1235/v1/register
 Content-Type: application/json
 
 {
-  "nombre": "yonis4",
+  "nombre": "yonis5",
   "correo": "yonis4@yonis.com",
   "password": "1234",
   "roleId": 1
@@ -39,13 +39,12 @@ Content-Type: application/json
 
 DELETE http://localhost:1235/v1/dashboard/users/1
 
-
 ### Crear Matrícula
 POST http://localhost:1235/v1/dashboard/matriculas
 Content-Type: application/json
 
 {
-  "userId": 3,  
+  "userId": 2,  
   "direccion": "Calle Principal",
   "estado_pago": "Pagado",
   "sexo": "Femenino",
@@ -64,4 +63,6 @@ Content-Type: application/json
 }
 
 #### Reporte
-GET https://api-skolmi.onrender.com/v1/reportes
+GET http://localhost:1235/v1/dashboard/getAllMatriculas
+###
+GET http://localhost:1235/v1/user/users

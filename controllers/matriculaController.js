@@ -54,5 +54,14 @@ export class MatriculaController {
             res.status(500).json({ error: "Ocurrió un error al crear la matrícula" });
         }
     }
+
+    getAllUsers = async (req, res) => {
+        try {
+          const restaurants = await this.matriculaModel.getAllMatriculas()
+          res.json(restaurants)
+        } catch (error) {
+          res.status(500).json({ error: error.message })
+        }
+      }
     
 }

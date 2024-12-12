@@ -12,13 +12,13 @@ export const createApp = (models) => {
     app.use(json())
     app.use(cookieParser())
 
-    const { registerRouter, loginRouter, matriculaRouter } = createRouters(models)
+    const { registerRouter, loginRouter, matriculaRouter, userRouter } = createRouters(models)
     console.log('holi',models)
 
 
     app.use('/v1', registerRouter)
     app.use('/v1', loginRouter)
-    // app.use('/v1', reporteRouter)
+    app.use('/v1/user', userRouter)
     app.use('/v1/dashboard', matriculaRouter)
 
     return app

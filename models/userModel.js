@@ -118,3 +118,7 @@ export class UserModel {
         }
     }
 }
+
+export const models = {
+    UserModel
+}

@@ -1,8 +1,13 @@
 
 export class UserController {
+
+    constructor ({ userModel }){
+        this.userModel= userModel;
+    }
+
     getAllUsers = async (req, res) => {
         try {
-          const restaurants = await this.matriculaModel.getAllUsers()
+          const restaurants = await this.userModel.getAllUsers()
           res.json(restaurants)
         } catch (error) {
           res.status(500).json({ error: error.message })
@@ -12,7 +17,7 @@ export class UserController {
     getUserById = async (req, res) => {
         try {
             const { userId } = req.params;
-            const user = await this.matriculaModel.getUserById({ 
+            const user = await this.userModel.getUserById({ 
                 userId
             })
             res.json(user)
@@ -25,7 +30,7 @@ export class UserController {
         try {
             const { userId } = req.params;
             const { nombre, correo, telefono } = req.body;
-            const result = await this.matriculaModel.updateUser({
+            const result = await this.userModel.updateUser({
                 
                 nombre, correo, telefono,userId
             })

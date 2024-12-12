@@ -14,6 +14,7 @@ export const createMatricularRouter = () => {
     });
 
     router.post('/matriculas', matriculaController.createMatricula);
+    router.get('/getAllMatriculas', matriculaController.getAllUsers)
 
     return router;
 };

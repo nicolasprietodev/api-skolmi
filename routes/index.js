@@ -2,6 +2,7 @@ import { createRegisterRouter } from './registerRouter.js'
 import { createLoginRouter } from './loginRouter.js';
 // import { createReporteRouter } from './reporteRouter.js'
 import { createMatricularRouter } from './matriculaRouter.js';
+import { createRouterUser } from './userRouter.js';
 
 
 export const createRouters = (models) => {
@@ -15,5 +16,6 @@ export const createRouters = (models) => {
             userModel: models.UserModel, 
             referidoModel: models.ReferidoModel
         }),
+        userRouter: createRouterUser({ userModel: models.UserModel })
     }
 }
