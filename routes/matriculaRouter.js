@@ -1,13 +1,19 @@
 import { Router } from "express";
-import { UserController } from "../controllers/userController.js";
+import { MatriculaController } from "../controllers/matriculaController.js";
+import { MatriculaModel } from "../models/matriculaModel.js";
+import { ReferidoModel } from "../models/referidosModel.js";
+import { UserModel } from "../models/userModel.js"; 
 
-export const createMatricularRouter = ({ userModel }) => {
+export const createMatricularRouter = () => {
     const router = Router();
-    const userController = new UserController({ userModel })
-    
-    router.get('/users', userController.getAllUsers);
-    router.get('/users/:userId', userController.getUserById);
-    router.patch('/users/:userId', userController.updateUser);
-    
+
+    const matriculaController = new MatriculaController({
+        matriculaModel: MatriculaModel,
+        referidoModel: ReferidoModel,
+        userModel: UserModel
+    });
+
+    router.post('/matriculas', matriculaController.createMatricula);
+
     return router;
-}
+};

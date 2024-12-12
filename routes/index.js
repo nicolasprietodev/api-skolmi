@@ -8,6 +8,10 @@ export const createRouters = (models) => {
     return {
         registerRouter: createRegisterRouter({ registerModel: models.RegisterModel}),
         loginRouter: createLoginRouter({ loginModel: models.LoginModel}),
-        matriculaRouter: createMatricularRouter({ matriculaModel: models.MatriculaModel})
+        matriculaRouter: createMatricularRouter({ 
+            matriculaModel: models.MatriculaModel,
+            userModel: models.UserModel, 
+            referidoModel: models.ReferidoModel
+        })
     }
 }

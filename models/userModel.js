@@ -1,3 +1,5 @@
+import pool from '../connection/pool.js'
+
 export class UserModel {
     static async getAllUsers (){
 
@@ -93,6 +95,26 @@ export class UserModel {
         } catch (error) {
             console.error('Error updating user:', error)
             throw error
+        }
+    }
+
+    static async updateCodigo(userId, codigo) {
+        const connection = await pool.getConnection();
+        try {
+            const [result] = await connection.query(
+                `
+                UPDATE usuarios
+                SET codigo = ?
+                WHERE id_usuario = ?
+                `,
+                [codigo, userId]
+            );
+            return result;
+        } catch (error) {
+            console.error("Error actualizando el código del usuario:", error);
+            throw error;
+        } finally {
+            connection.release();
         }
     }
 }
