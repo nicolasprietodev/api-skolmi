@@ -1,5 +1,3 @@
-import { ReporteModel } from '../models/reporteModel.js';
-
 export class ReporteController {
 
   constructor ({ reporteModel }){
