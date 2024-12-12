@@ -9,7 +9,7 @@ Content-Type: application/json
 ### endpoint deslogeo
 POST  http://localhost:1235/v1/logout
 ### endpoint register
-POST https://api-skolmi.onrender.com/v1/register
+POST http://localhost:1235/v1/register
 Content-Type: application/json
 
 {
@@ -18,5 +18,23 @@ Content-Type: application/json
   "password": "1234",
   "roleId": 1
 }
-###
-GET  https://api-skolmi.onrender.com/v1/register
+### endpoitn getAllusers
+GET  http://localhost:1235/v1/dashboard/users
+
+### endpoint getUsersByRole
+GET http://localhost:1235/v1/dashboard/users/1
+
+### endpoint updateUser
+
+PATCH http://localhost:1235/v1/dashboard/users/1
+Content-Type: application/json
+
+{
+  "nombre": "yonis2 updated",
+  "correo": "yonis2@yonis.com",
+  "telefono": 123456
+}
+
+### endpoint deleteUser
+
+DELETE http://localhost:1235/v1/dashboard/users/1

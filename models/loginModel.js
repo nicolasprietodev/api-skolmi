@@ -9,6 +9,7 @@ export class LoginModel {
         `
         SELECT
             u.correo AS correo,
+            u.nombre,
             u.password,
             r.rol AS rol,
             u.id_usuario
@@ -30,6 +31,7 @@ export class LoginModel {
   
       const user = rows[0];
       return {
+        nombre: user.nombre,
         id_usuario: user.id_usuario,
         correo: user.correo,
         password: user.password,

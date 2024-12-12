@@ -26,12 +26,14 @@ export class LoginController {
       }
 
       const token = jwt.sign(
-        { userId: user.id_usuario, username: user.correo, password: user.password }
+        { userId: user.id_usuario, rol: user.rol, nombre: user.nombre }
         , JWT_TOKEN,
         { expiresIn: '1h' })
 
+      const userId = user.id_usuario
+
       res.cookie('authToken', token, COOKIE_OPTIONS)
-      res.status(200).json({ message: 'Inicio de sesión exitoso', token })
+      res.status(200).json({ message: 'Inicio de sesión exitoso', token, userId})
     } catch (error) {
       console.error('Error en el controlador getLogin:', error)
       res.status(500).json({ message: 'Error al inicar sesion' })

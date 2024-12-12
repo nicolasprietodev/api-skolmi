@@ -1,10 +1,13 @@
 import { Router } from "express";
-import { MatriculaController } from "../controllers/matriculaController";
+import { UserController } from "../controllers/userController.js";
 
-export const createMatricularRouter = ({ matriculaModel }) => {
+export const createMatricularRouter = ({ userModel }) => {
     const router = Router();
-    const matriculaController = new MatriculaController({ matriculaModel })
+    const userController = new UserController({ userModel })
     
-    router.get('/users', matriculaController.getAllUsers);
+    router.get('/users', userController.getAllUsers);
+    router.get('/users/:userId', userController.getUserById);
+    router.patch('/users/:userId', userController.updateUser);
     
+    return router;
 }
