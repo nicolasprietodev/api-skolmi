@@ -4,6 +4,7 @@ import { corsMiddleware } from './middleWares/corsMiddleware.js'
 import cookieParser from 'cookie-parser'
 import path from 'node:path'
 import { fileURLToPath } from 'url'
+import createReporteRouter from './routes/reporteRouter.js';
 
 
 
@@ -21,12 +22,13 @@ export const createApp = (models) => {
     app.use(json())
     app.use(cookieParser())
 
-    const { registerRouter, loginRouter } = createRouters(models)
+    const { registerRouter, loginRouter, reporteRouter } = createRouters(models)
     console.log('holi',models)
 
 
     app.use('/v1', registerRouter)
     app.use('/v1', loginRouter)
+    app.use('/v1', reporteRouter)
     // app.use('/v1/dashboard', loginRouter)
 
     return app
