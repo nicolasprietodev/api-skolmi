@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import ReporteController from '../controllers/reporteController.js';
+import { ReporteController } from '../controllers/reporteController.js';
 
-const createReporteRouter = ({ reporteModel }) => {
+export const createReporteRouter = ({ reporteModel }) => {
   const router = Router();
 
   const reporteController = new ReporteController({ reporteModel });
@@ -11,6 +11,4 @@ const createReporteRouter = ({ reporteModel }) => {
 
   return router;
 };
-
-export default createReporteRouter;
 

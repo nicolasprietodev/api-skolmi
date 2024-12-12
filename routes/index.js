@@ -1,6 +1,6 @@
 import { createRegisterRouter } from './registerRouter.js'
 import { createLoginRouter } from './loginRouter.js';
-import createReporteRouter from './reporteRouter.js'
+import { createReporteRouter } from './reporteRouter.js'
 import { createMatricularRouter } from './matriculaRouter.js';
 
 
