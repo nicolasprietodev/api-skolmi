@@ -14,6 +14,6 @@ export const createRouters = (models) => {
             matriculaModel: models.MatriculaModel,
             userModel: models.UserModel, 
             referidoModel: models.ReferidoModel
-        })
+        }),
     }
 }

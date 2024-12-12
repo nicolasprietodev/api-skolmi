@@ -39,3 +39,6 @@ export class ReporteModel {
     }
   }
   
+  export const models = {
+    ReporteModel
+  }

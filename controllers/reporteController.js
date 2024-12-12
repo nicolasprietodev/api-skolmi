@@ -1,9 +1,14 @@
 import { ReporteModel } from '../models/reporteModel.js';
 
-class ReporteController {
+export class ReporteController {
+
+  constructor ({ reporteModel }){
+    this.reporteModel= reporteModel;
+  }
+
   static async generarReporte(req, res) {
     try {
-      const reporte = await ReporteModel.obtenerReporte();
+      const reporte = await this.reporteModel.obtenerReporte();
       res.json(reporte);
     } catch (error) {
       console.error(error);
@@ -14,7 +19,7 @@ class ReporteController {
   static async segmentarReferidos(req, res) {
     const estado = req.query.estado || 1;
     try {
-      const segmentados = await ReporteModel.segmentarReferidos(estado);
+      const segmentados = await this.reporteModel.segmentarReferidos(estado);
       res.json(segmentados);
     } catch (error) {
       console.error(error);
@@ -22,5 +27,3 @@ class ReporteController {
     }
   }
 }
-
-export default ReporteController;
