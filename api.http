@@ -9,14 +9,56 @@ Content-Type: application/json
 ### endpoint deslogeo
 POST  http://localhost:1235/v1/logout
 ### endpoint register
-POST https://api-skolmi.onrender.com/v1/register
+POST http://localhost:1235/v1/register
 Content-Type: application/json
 
 {
-  "nombre": "yonis2",
-  "correo": "yonis2@yonis.com",
+  "nombre": "yonis4",
+  "correo": "yonis4@yonis.com",
   "password": "1234",
   "roleId": 1
 }
-###
-GET  https://api-skolmi.onrender.com/v1/register
+### endpoitn getAllusers
+GET  http://localhost:1235/v1/dashboard/users
+
+### endpoint getUsersByRole
+GET http://localhost:1235/v1/dashboard/users/1
+
+### endpoint updateUser
+
+PATCH http://localhost:1235/v1/dashboard/users/1
+Content-Type: application/json
+
+{
+  "nombre": "yonis2 updated",
+  "correo": "yonis2@yonis.com",
+  "telefono": 123456
+}
+
+### endpoint deleteUser
+
+DELETE http://localhost:1235/v1/dashboard/users/1
+
+
+### Crear Matrícula
+POST http://localhost:1235/v1/dashboard/matriculas
+Content-Type: application/json
+
+{
+  "userId": 3,  
+  "direccion": "Calle Principal",
+  "estado_pago": "Pagado",
+  "sexo": "Femenino",
+  "estado_civil": "Soltera",
+  "documento": "987654321",
+  "nivel_academico": "Universitario",
+  "anio_anterior": 2023,
+  "fecha_nacimiento": "1995-07-10",
+  "tipo_sangre": "A+",
+  "tutor": "Ana Gómez",
+  "tel_tutor": "987654321",
+  "relacion_tutor": "Madre",
+  "municipio": "Medellín",
+  "departamento": "Antioquia",
+  "codigo": "C86F9334" 
+}

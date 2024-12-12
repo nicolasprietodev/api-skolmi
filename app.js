@@ -14,15 +14,12 @@ import createReporteRouter from './routes/reporteRouter.js';
 export const createApp = (models) => {
     const app = express()
 
-    // app.set('view engine', 'ejs')
-    // app.set('views', path.join(__dirname, 'views'))
-
     app.use(corsMiddleware())
     app.disable('x-powered-by')
     app.use(json())
     app.use(cookieParser())
 
-    const { registerRouter, loginRouter, reporteRouter } = createRouters(models)
+    const { registerRouter, loginRouter, reporteRouter, matriculaRouter } = createRouters(models)
     console.log('holi',models)
 
 
@@ -30,6 +27,7 @@ export const createApp = (models) => {
     app.use('/v1', loginRouter)
     app.use('/v1', reporteRouter)
     // app.use('/v1/dashboard', loginRouter)
+    app.use('/v1/dashboard', matriculaRouter)
 
     return app
 }   

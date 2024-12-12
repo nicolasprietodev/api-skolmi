@@ -1,52 +1,58 @@
-
+import crypto from 'crypto'
 
 export class MatriculaController {
-    constructor ({matriculaModel}){
+    constructor({ matriculaModel, referidoModel, userModel }) {
         this.matriculaModel = matriculaModel;
+        this.referidoModel = referidoModel;
+        this.userModel = userModel;
+
     }
 
-    getAllUsers = async (req, res) => {
+    createMatricula = async (req, res) => {
         try {
-          const restaurants = await this.matriculaModel.getAllUsers()
-          res.json(restaurants)
+            const {
+                userId,
+                direccion, estado_pago, sexo, estado_civil, documento, nivel_academico, anio_anterior,
+                fecha_nacimiento, tipo_sangre, tutor, tel_tutor, rel_tutor, municipio, departamento, codigo
+            } = req.body;
+    
+            if (!userId || isNaN(userId)) {
+                return res.status(400).json({ error: "El campo 'userId' es obligatorio y debe ser un número válido." });
+            }
+    
+            const totalCampos = 16;
+            const camposLlenos = [
+                direccion, estado_pago, sexo, estado_civil, documento, nivel_academico, anio_anterior,
+                fecha_nacimiento, tipo_sangre, tutor, tel_tutor, rel_tutor, municipio, departamento
+            ].filter(Boolean).length;
+    
+            const progreso = Math.floor((camposLlenos / totalCampos) * 100);
+    
+            await this.matriculaModel.createMatricula(
+                userId,
+                direccion, estado_pago, sexo, estado_civil, documento, nivel_academico, anio_anterior,
+                fecha_nacimiento, tipo_sangre, tutor, tel_tutor, rel_tutor, municipio, departamento,
+                progreso
+            );
+    
+            if (codigo) {
+                const referidor = await this.referidoModel.getReferidorByCodigo(codigo);
+    
+                if (referidor) {
+                    await this.referidoModel.createReferido(userId, referidor.id_usuario);
+                }
+            }
+    
+            if (progreso > 80) {
+                const generatedCode = crypto.randomBytes(4).toString("hex").toUpperCase();
+                await this.userModel.updateCodigo(userId, generatedCode);
+            }
+    
+            res.status(201).json({ message: "Matrícula creada exitosamente", progreso });
         } catch (error) {
-          res.status(500).json({ error: error.message })
-        }
-      }
-
-    getUserById = async (req, res) => {
-        try {
-            const { idUser } = req.params;
-            const user = await this.matriculaModel.getUserById({ 
-                idUser
-            })
-            res.json(user)
-        } catch (error) {
-            res.status(500).json({ error: error.message })
+            console.error("Error creando matrícula:", error);
+            res.status(500).json({ error: "Ocurrió un error al crear la matrícula" });
         }
     }
-
-    updateUser = async (req, res) => {
-        try {
-            const { idUser } = req.params;
-            const updateUser = { nombre, apellido, correo, edad } = req.body;
-            const result = await this.matriculaModel.updateUser({
-                idUser,
-                updateUser
-            })
-            res.status(200).json({
-                message: 'User updated successfully',
-                data: result
-            })
-        } catch (error) {
-            if (error.message === 'User not found') {
-                res.status(404).json({ error: error.message })
-              } else {
-                res.status(500).json({ error: error.message })
-              }
-        }
-    }
-
-
-
+    
 }
