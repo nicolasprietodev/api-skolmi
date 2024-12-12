@@ -64,4 +64,4 @@ Content-Type: application/json
 }
 
 #### Reporte
-GET http://localhost:1235/v1/reportes
+GET https://api-skolmi.onrender.com/v1/reportes
