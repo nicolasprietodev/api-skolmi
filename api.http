@@ -13,8 +13,8 @@ POST http://localhost:1235/v1/register
 Content-Type: application/json
 
 {
-  "nombre": "yonis5",
-  "correo": "yonis4@yonis.com",
+  "nombre": "yonis6",
+  "correo": "yonis6@yonis.com",
   "password": "1234",
   "roleId": 1
 }
@@ -44,7 +44,7 @@ POST http://localhost:1235/v1/dashboard/matriculas
 Content-Type: application/json
 
 {
-  "userId": 2,  
+  "userId": 4,  
   "direccion": "Calle Principal",
   "estado_pago": "Pagado",
   "sexo": "Femenino",
