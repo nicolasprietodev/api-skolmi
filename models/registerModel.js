@@ -19,8 +19,8 @@ export class RegisterModel {
       console.log('password', hashedPassword)
       const [result] = await connection.query(
         `INSERT INTO usuarios (nombre, correo, password,
-                id_rol) VALUES (?,?,?,?)`,
-        [nombre, correo, hashedPassword, roleId]
+                id_rol, estado_usuario) VALUES (?,?,?,?,?)`,
+        [nombre, correo, hashedPassword, roleId, 1]
       )
       return {
         id: result.insertId,

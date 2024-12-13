@@ -46,6 +46,7 @@ export class MatriculaController {
             if (progreso > 80) {
                 const generatedCode = crypto.randomBytes(4).toString("hex").toUpperCase();
                 await this.userModel.updateCodigo(userId, generatedCode);
+            
             }
     
             res.status(201).json({ message: "Matrícula creada exitosamente", progreso });

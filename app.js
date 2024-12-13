@@ -21,5 +21,7 @@ export const createApp = (models) => {
     app.use('/v1/user', userRouter)
     app.use('/v1/reportes', reporteRouter)
     app.use('/v1/dashboard', matriculaRouter)
+    
+
     return app
 }   
