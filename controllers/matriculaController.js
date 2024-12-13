@@ -83,6 +83,15 @@ export class MatriculaController {
             res.status(500).json({ error: error.message})
         }
       }
+      getReferidoById = async (req, res) => {
+        try {
+          const { userId } = req.params;
+          const referidos = await this.referidoModel.getReferidoById({ userId })
+          res.json(referidos)  
+        } catch (error) {
+            res.status(500).json({ error: error.message})
+        }
+      }
      
 
 }

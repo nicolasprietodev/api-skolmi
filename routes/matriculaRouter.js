@@ -17,6 +17,7 @@ export const createMatricularRouter = () => {
     router.get('/getAllMatriculas', matriculaController.getAllMatriculas)
     router.get('/getMatriculaById/:userId', matriculaController.getMatriculaById)
     router.get('/referidos/all', matriculaController.getAllReferidos)
+    router.get('/referidos/:userId', matriculaController.getReferidoById)
 
 
     return router;
