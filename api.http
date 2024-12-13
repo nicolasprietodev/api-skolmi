@@ -1,5 +1,5 @@
 ### endpoint Logeo
-POST http://localhost:1235/v1/login
+POST https://api-skolmi.onrender.com/v1/login
 Content-Type: application/json
 
 {
@@ -13,8 +13,8 @@ POST http://localhost:1235/v1/register
 Content-Type: application/json
 
 {
-  "nombre": "yonis6",
-  "correo": "yonis6@yonis.com",
+  "nombre": "yonis5",
+  "correo": "yonis4@yonis.com",
   "password": "1234",
   "roleId": 1
 }
@@ -44,7 +44,7 @@ POST http://localhost:1235/v1/dashboard/matriculas
 Content-Type: application/json
 
 {
-  "userId": 4,  
+  "userId": 52,  
   "direccion": "Calle Principal",
   "estado_pago": "Pagado",
   "sexo": "Femenino",
@@ -59,7 +59,7 @@ Content-Type: application/json
   "relacion_tutor": "Madre",
   "municipio": "Medellín",
   "departamento": "Antioquia",
-  "codigo": "C86F9334" 
+  "codigo": "ED16E1A5" 
 }
 
 #### 
@@ -70,9 +70,16 @@ GET http://localhost:1235/v1/dashboard/getMatriculaById/1
 ###
 GET http://localhost:1235/v1/user/users
 ###
-GET http://localhost:1235/v1/user/users/1
+GET https://api-skolmi.onrender.com/v1/user/users/10
+###
+GET https://api-skolmi.onrender.com/v1/reportes/reporte
+###
+POST http://localhost:1235/v1/reportes/predecir
+Content-Type: application/json
 
+{
+  "estado_usuario": 1,
+  "valor_incentivo": 1000.0
+}
 ###
-GET http://localhost:1235/v1/reportes/reporte
-###
-GET http://localhost:1235/v1/reportes/referidos/mensaje/1
+GET http://localhost:1235/v1/dashboard/referidos/all

@@ -16,6 +16,8 @@ export const createMatricularRouter = () => {
     router.post('/matriculas', matriculaController.createMatricula);
     router.get('/getAllMatriculas', matriculaController.getAllMatriculas)
     router.get('/getMatriculaById/:userId', matriculaController.getMatriculaById)
+    router.get('/referidos/all', matriculaController.getAllReferidos)
+
 
     return router;
 };

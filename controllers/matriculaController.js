@@ -37,7 +37,8 @@ export class MatriculaController {
     
             if (codigo) {
                 const referidor = await this.referidoModel.getReferidorByCodigo(codigo);
-    
+                console.log('referido', referidor);
+            
                 if (referidor) {
                     await this.referidoModel.createReferido(userId, referidor.id_usuario);
                 }
@@ -74,5 +75,14 @@ export class MatriculaController {
           res.status(500).json({ error: error.message })
         }
       }
+      getAllReferidos = async (req, res) => {
+        try {
+          const referidos = await this.referidoModel.getAllReferidos()
+          res.json(referidos)  
+        } catch (error) {
+            res.status(500).json({ error: error.message})
+        }
+      }
+     
 
 }

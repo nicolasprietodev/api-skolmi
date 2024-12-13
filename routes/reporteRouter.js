@@ -8,7 +8,7 @@ export const createReporteRouter = ({ reporteModel }) => {
 
   router.get('/reporte', reporteController.generarReporte);
   router.get('/segmentacion', reporteController.segmentarReferidos);
-  router.post('/predecir', (req, res) => reporteController.predecirConversion(req,res));
+  router.post('/predecir', reporteController.predecirConversion);
   router.get('/referidos/mensaje/:userId', reporteController.obtenerMensajeReferidos);
 
   return router;
