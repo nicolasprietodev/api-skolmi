@@ -82,7 +82,7 @@ export class ReferidoModel {
       FROM referidos r
       LEFT JOIN usuarios u_referido ON r.id_usuario_referido = u_referido.id_usuario
       LEFT JOIN usuarios u_referidor ON r.id_usuario_referidor = u_referidor.id_usuario
-      WHERE r.id_usuario_referido = ?;
+      WHERE r.id_usuario_referidor = ?;
 
 `, [userId])
       return rows
