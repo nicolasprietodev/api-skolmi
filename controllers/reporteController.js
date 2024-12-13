@@ -26,4 +26,27 @@ export class ReporteController {
       res.status(500).send('Error en la segmentación');
     }
   }
+
+  obtenerMensajeReferidos = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const totalReferidos = await this.reporteModel.obtenerNivelReferidos({ userId });
+        let mensaje;
+        if (totalReferidos > 10) {
+            mensaje = "¡Buen trabajo! Sigue así para ganar más premios.";
+        } else if (totalReferidos > 0) {
+            mensaje = "Recuerda que puedes ganar premios por referir amigos.";
+        } else {
+            mensaje = "¡Comienza a referir amigos para ganar premios exclusivos!";
+        }
+        res.json({ totalReferidos, mensaje });
+    } catch (error) {
+        console.error("Error al obtener mensaje de referidos:", error);
+        res.status(500).json({ error: "Error al procesar la solicitud." });
+    }
+}
+
+
+
+
 }

@@ -9,7 +9,6 @@ export class UserModel {
                     u.id_usuario,
                     u.nombre,
                     u.correo,
-                    u.telefono,
                     u.fecha_registro,
                     u.estado_usuario,
                     r.rol AS rol_usuario,

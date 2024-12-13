@@ -30,8 +30,8 @@ export class MatriculaModel {
             throw error;
         } finally {
             connection.release();
-        }
-    }
+        }
+    }
 
     static async getAllMatriculas() {
         const connection = await pool.getConnection();
